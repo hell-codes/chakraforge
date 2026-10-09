@@ -59,8 +59,8 @@ describe('CHAKRAFORGE Simulation Engine', () => {
     expect(engine.commBus.totalMessagesDelivered).toBe(0);
   });
 
-  it('runs Monte-Carlo batch trials and generates valid metrics', () => {
-    const batchSummary = ExperimentRunner.runBatch(baseConfig, 5);
+  it('runs Monte-Carlo batch trials and generates valid metrics', async () => {
+    const batchSummary = await ExperimentRunner.runBatch(baseConfig, 5);
     expect(batchSummary.completedTrials).toBe(5);
     expect(batchSummary.meanCoordinationScore).toBeGreaterThanOrEqual(0);
     expect(batchSummary.meanCoordinationScore).toBeLessThanOrEqual(100);

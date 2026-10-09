@@ -540,8 +540,8 @@ export class SimulationEngine {
       if (this.phase === 'SURROUNDED') {
         this.surroundedCombatSteps++;
         // Dramatic health decay during surrounded combat
-        abhimanyu.stamina = Math.max(0, abhimanyu.stamina - 1);
-        abhimanyu.health = Math.max(0, abhimanyu.health - 1.5);
+        abhimanyu.stamina = Math.max(0, (abhimanyu.stamina ?? 0) - 1);
+        abhimanyu.health = Math.max(0, (abhimanyu.health ?? 0) - 1.5);
 
         // Fire narrative combat events every 15 steps of SURROUNDED
         if (this.surroundedCombatSteps % 15 === 0) {
@@ -612,7 +612,7 @@ export class SimulationEngine {
         if (this.hasBreachedInnerCore && this.phase === 'ESCAPE_ATTEMPT' && hasReachedOuterSafety) {
           this.phase = 'ESCAPE_SUCCESS';
           abhimanyu.status = 'COMPLETED';
-          abhimanyu.health = Math.max(10, abhimanyu.health - 0.5);
+          abhimanyu.health = Math.max(10, (abhimanyu.health ?? 0) - 0.5);
           this.isFinished = true;
           this.addEvent(
             'STORY_PHASE',
